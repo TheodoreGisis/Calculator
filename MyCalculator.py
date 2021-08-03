@@ -57,7 +57,8 @@ class Calculator():
         buttom.grid(row=0,column=2,sticky=tk.NSEW)
 
     def square(self):
-        self.current_expression *= str(self.current_expression)
+        self.current_expression= str(eval(f"{self.current_expression}**2"))
+ 
         self.update_current_label()
 
     def evaluate_function(self):
