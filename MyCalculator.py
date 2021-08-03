@@ -39,6 +39,7 @@ class Calculator():
         self.create_clear_buttom()
         self.create_euqals_buttom()
         self.create_squer_buttom()
+        self.create_riza_buttom()
     def create_operator_buttoms(self):
         i=0
         for operator,symbol in self.operations.items():
@@ -66,8 +67,15 @@ class Calculator():
         self.update_total_label()
         self.current_expression = str(eval(self.total_expression))
         self.update_current_label()
+        self.current_expression=""
 
+    def riza(self):
+        self.current_expression= str(eval(f"{self.current_expression}**0.5"))
+        self.update_current_label()
 
+    def create_riza_buttom(self):
+        buttom = tk.Button(self.buttom_fame,text="\u221ax",font=("Arial",20),bg="light sky blue",borderwidth=0,command=lambda:self.riza())
+        buttom.grid(row=0,column=3,sticky=tk.NSEW)       
 
     def create_euqals_buttom(self):
             buttom = tk.Button(self.buttom_fame,text="=",font=("Arial",20),bg="light sky blue",borderwidth=1,command=lambda:self.evaluate_function())
@@ -91,7 +99,6 @@ class Calculator():
     def display_total_labes(self):
         total_label = tk.Label(self.window,text=self.total_expression,anchor=tk.E,bg=LIGHT_GRAY,font=(LABEL_COLOR,25),padx=20)
         total_label.pack(expand=True,fill="both")
-
         return total_label 
 
     def display_label(self):
